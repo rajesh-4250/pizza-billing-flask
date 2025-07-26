@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pizza Bill Generator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>🍕 Pizza Bill Generator</h1>
+    <form method="POST">
+      <h2>Pizza Category</h2>
+      <label><input type="radio" name="category" value="normal" required> Normal</label>
+      <label><input type="radio" name="category" value="deluxe"> Deluxe</label>
+
+      <h2>Type</h2>
+      <label><input type="radio" name="type" value="veg" required> Veg</label>
+      <label><input type="radio" name="type" value="nonveg"> Non-Veg</label>
+
+      <h2>Add-ons</h2>
+      <label><input type="checkbox" name="cheese"> Extra Cheese (+₹100)</label><br>
+      <label><input type="checkbox" name="topping"> Extra Topping (+₹100)</label><br>
+
+      <h2>Extras</h2>
+      <label>Water Bottles: <input type="number" name="water" min="0" value="0"></label><br>
+      <label>Ketchup Packets: <input type="number" name="ketchup" min="0" value="0"></label><br>
+      <label>Soft Drinks: <input type="number" name="softdrinks" min="0" value="0"></label><br>
+
+      <h2>Take Away</h2>
+      <label><input type="checkbox" name="takeaway"> Yes (+₹20)</label><br><br>
+
+      <button type="submit">Generate Bill</button>
+    </form>
+
+    {% if total is not none %}
+    <div class="bill">
+      <h2>🧾 Your Bill</h2>
+      <p>Sub Total       : ₹{{ t }}</p>
+      <p>GST (18%)       : ₹{{ gst }}</p>
+      <hr>
+      <p><strong>Total Payable : ₹{{ total }}</strong></p>
+    </div>
+    {% endif %}
+  </div>
+</body>
+</html>
+
+
